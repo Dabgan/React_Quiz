@@ -1,0 +1,139 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+/* ---------------------------------------------------
+    GLOBAL
+----------------------------------------------------- */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+  background-color: #072222;
+  color: #ffffff;
+  font-size: 18px;
+}
+
+a {
+  color: #333333;
+  text-decoration: none;
+}
+
+.btn {
+  font-size: 1.2rem;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  background-color: #a2d7d5;
+  border: 2px solid #46a49f;
+  cursor: pointer;
+}
+
+.big {
+  font-size: 5rem;
+}
+
+/* ---------------------------------------------------
+    MAIN VIEW
+----------------------------------------------------- */
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+}
+
+.main-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 650px;
+  height: 450px;
+  border: 2px solid green;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* ---------------------------------------------------
+    QUIZZ VIEW
+----------------------------------------------------- */
+.quiz-panel {
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+/* ---------------------------------------------------
+    QUESTION PANEL
+----------------------------------------------------- */
+.question-panel {
+  border: 2px solid red;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.question-heading {
+  font-size: 3rem;
+  margin: 20px auto;
+}
+
+/* ---------------------------------------------------
+    ANSWERS PANEL
+----------------------------------------------------- */
+.answers-panel {
+  border: 2px solid blue;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.answer {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 45%;
+          flex: 1 1 45%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 2px solid #1eea2d;
+  cursor: pointer;
+}
+/*# sourceMappingURL=App.css.map */
