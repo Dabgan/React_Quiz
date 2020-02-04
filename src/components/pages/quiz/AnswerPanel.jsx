@@ -1,19 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 import Answer from "./Answer";
 
-function AnswerPanel() {
-    const answers = [
-        { id: 1, text: "answer1" },
-        { id: 2, text: "answer2" },
-        { id: 3, text: "answer3" },
-        { id: 4, text: "answer4" }
-    ];
+class AnswerPanel extends Component {
+    render() {
+        const { answers } = this.props;
 
-    const answersList = answers.map(answer => (
-        <Answer key={answer.id} answerText={answer.text} />
-    ));
+        const answersList = answers.map(answer => (
+            <Answer
+                key={answer.id}
+                id={answer.id}
+                answerText={answer.text}
+                selectAnswer={this.props.selectAnswer}
+                answerClass={answer.isMarked}
+            />
+        ));
 
-    return <div className="answers-panel">{answersList}</div>;
+        return <div className="answers-panel">{answersList}</div>;
+    }
 }
 
 export default AnswerPanel;

@@ -1,15 +1,21 @@
-import React from "react";
+import React, { Component } from "react";
 
-function Answer(props) {
-    const selectAnswer = () => {
-        console.log("answer selected");
-    };
+class Answer extends Component {
+    render() {
+        const { selectAnswer, answerText, id, answerClass } = this.props;
 
-    return (
-        <div className="answer" onClick={selectAnswer}>
-            <h2>{props.answerText}</h2>
-        </div>
-    );
+        const answerClassName = answerClass ? "answer marked" : "answer";
+
+        return (
+            <div
+                className={answerClassName + " h1"}
+                onClick={selectAnswer}
+                id={id}
+            >
+                {answerText}
+            </div>
+        );
+    }
 }
 
 export default Answer;
