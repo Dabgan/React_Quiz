@@ -2,13 +2,19 @@ import React, { Component } from "react";
 
 class Answer extends Component {
     render() {
-        const { selectAnswer, answerText, id, answerClass } = this.props;
+        const {
+            selectAnswer,
+            answerText,
+            id,
+            answerClass,
+            answerSubmitedClass
+        } = this.props;
 
-        const answerClassName = answerClass ? "answer marked" : "answer";
+        const answerClassName = answerClass ? " marked " : " ";
 
         return (
             <div
-                className={answerClassName + " h1"}
+                className={answerClassName + " answer h1" + answerSubmitedClass}
                 onClick={selectAnswer}
                 id={id}
             >

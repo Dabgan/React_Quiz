@@ -3,15 +3,17 @@ import Answer from "./Answer";
 
 class AnswerPanel extends Component {
     render() {
-        const { answers } = this.props;
+        const { answers, isSubmitted, selectAnswer } = this.props;
+        const onSelect = isSubmitted ? null : selectAnswer;
 
         const answersList = answers.map(answer => (
             <Answer
                 key={answer.id}
                 id={answer.id}
                 answerText={answer.text}
-                selectAnswer={this.props.selectAnswer}
+                selectAnswer={onSelect}
                 answerClass={answer.isMarked}
+                answerSubmitedClass={answer.submitedAnswerClass}
             />
         ));
 

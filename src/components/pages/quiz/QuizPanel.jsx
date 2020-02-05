@@ -1,20 +1,43 @@
 import React, { Component } from "react";
 import QuestionPanel from "./QuestionPanel";
 import AnswerPanel from "./AnswerPanel";
+import SubmitButton from "../../SubmitButton";
+import NextQuestionButton from "../../NextQuestionButton";
 
 class QuizPanel extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            answers: [
-                { id: 1, text: "answer1", isMarked: false, isCorrect: false },
-                { id: 2, text: "answer2", isMarked: false, isCorrect: false },
-                { id: 3, text: "answer3", isMarked: false, isCorrect: false },
-                { id: 4, text: "answer4", isMarked: false, isCorrect: true }
-            ]
-        };
-    }
+    state = {
+        submitAnswer: false,
+        answers: [
+            {
+                id: 1,
+                text: "answer1",
+                isMarked: false,
+                isCorrect: false,
+                submitedAnswerClass: ""
+            },
+            {
+                id: 2,
+                text: "answer2",
+                isMarked: false,
+                isCorrect: false,
+                submitedAnswerClass: ""
+            },
+            {
+                id: 3,
+                text: "answer3",
+                isMarked: false,
+                isCorrect: false,
+                submitedAnswerClass: ""
+            },
+            {
+                id: 4,
+                text: "answer4",
+                isMarked: false,
+                isCorrect: true,
+                submitedAnswerClass: ""
+            }
+        ]
+    };
 
     selectAnswer = e => {
         const clickedAnswer = parseInt(e.target.id);
@@ -28,16 +51,27 @@ class QuizPanel extends Component {
     };
 
     submitAnswer = () => {
-        console.log(`submit answer`);
-
+        if (this.state.submitAnswer) {
+            return;
+        }
         this.setState(
             this.state.answers.map(answer => {
-                // answer.isCorrect ?
+                if (answer.isMarked && !answer.isCorrect) {
+                    return (answer.submitedAnswerClass = " wrong");
+                } else if (answer.isCorrect) {
+                    return (answer.submitedAnswerClass = " correct");
+                } else {
+                    return (answer.submitedAnswerClass = "");
+                }
             })
         );
+        this.setState({ submitAnswer: true });
     };
 
     getNextQuestion = () => {
+        if (!this.state.submitAnswer) {
+            return;
+        }
         console.log(`get next question`);
     };
 
@@ -47,16 +81,15 @@ class QuizPanel extends Component {
                 <div className="main-panel quiz-panel">
                     <QuestionPanel />
                     <AnswerPanel
+                        isSubmitted={this.state.submitAnswer}
                         selectAnswer={this.selectAnswer}
                         answers={this.state.answers}
                     />
                     <div>
-                        <button className="btn" onClick={this.submitAnswer}>
-                            Submit answer
-                        </button>
-                        <button className="btn" onClick={this.getNextQuestion}>
-                            Next question
-                        </button>
+                        <SubmitButton onSubmit={this.submitAnswer} />
+                        <NextQuestionButton
+                            getNextQuestion={this.getNextQuestion}
+                        />
                     </div>
                 </div>
             </div>
