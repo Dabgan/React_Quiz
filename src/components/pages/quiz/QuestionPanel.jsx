@@ -1,13 +1,14 @@
 import React from "react";
 
-function QuestionPanel() {
+function QuestionPanel({ question, currentQuestion }) {
     return (
         <div className="question-panel">
-            <h1 className="question-heading">Question heading</h1>
-            <p>
-                Here will go some question propably from some API, random
-                question lets say about Javascript?
-            </p>
+            <div className="content">
+                <div className="counter">
+                    Question: <span>{currentQuestion}/10</span>
+                </div>
+            </div>
+            <h1 className="question-heading">{question.quest}</h1>
         </div>
     );
 }

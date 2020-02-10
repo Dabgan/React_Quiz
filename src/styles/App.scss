@@ -78,12 +78,18 @@ a {
 ----------------------------------------------------- */
 .question-panel {
     border: 2px solid red;
-    flex: 1;
+    flex: 0 1 50%;
+}
+.content {
+    border: 2px solid yellow;
+    height: 40px;
+    font-size: 1.3rem;
 }
 .question-heading {
-    font-size: 3rem;
+    font-size: 2rem;
     margin: 20px auto;
 }
+
 /* ---------------------------------------------------
     ANSWERS PANEL
 ----------------------------------------------------- */
