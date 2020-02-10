@@ -71,6 +71,19 @@ a {
 
 .quiz-panel {
     align-items: stretch;
+    position: relative;
+}
+.loader-icon {
+    width: 100px;
+    height: 100px;
+    // background-color: yellow;
+    border-radius: 50%;
+    border: 10px solid #f55474;
+    border-top: 10px solid #950924;
+    animation: loading 2s linear infinite;
+    position: absolute;
+    margin: auto 40.9%;
+    // display: ;
 }
 
 /* ---------------------------------------------------
@@ -79,6 +92,7 @@ a {
 .question-panel {
     border: 2px solid red;
     flex: 0 1 50%;
+    // display: none;
 }
 .content {
     border: 2px solid yellow;
@@ -98,6 +112,7 @@ a {
     flex: 1;
     display: flex;
     flex-flow: row wrap;
+    // display: none;
 }
 .answer {
     flex: 1 1 45%;
@@ -116,4 +131,15 @@ a {
 }
 .wrong {
     background-color: #b81148;
+}
+/* ---------------------------------------------------
+    ANIMATIONS
+----------------------------------------------------- */
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

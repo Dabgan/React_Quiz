@@ -3,9 +3,11 @@ import QuestionPanel from "./QuestionPanel";
 import AnswerPanel from "./AnswerPanel";
 import SubmitButton from "../../SubmitButton";
 import NextQuestionButton from "../../NextQuestionButton";
+import LoaderIcon from "../../LoaderIcon";
 
 class QuizPanel extends Component {
     state = {
+        loaderIcon: true,
         submitAnswer: false,
         questions: [
             "asdas",
@@ -64,7 +66,8 @@ class QuizPanel extends Component {
                 });
                 this.setState({
                     actualQuestion: this.state.questions[0],
-                    actuanAnswers: this.state.answers[0]
+                    actuanAnswers: this.state.answers[0],
+                    loaderIcon: false
                 });
             });
     };
@@ -131,6 +134,7 @@ class QuizPanel extends Component {
         return (
             <div className="container">
                 <div className="main-panel quiz-panel">
+                    <LoaderIcon loaderIcon={this.state.loaderIcon} />
                     <QuestionPanel
                         question={this.state.actualQuestion}
                         currentQuestion={this.state.currentQuestion}
