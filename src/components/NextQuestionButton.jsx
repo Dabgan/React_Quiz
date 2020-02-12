@@ -1,9 +1,17 @@
 import React from "react";
 
 function NextQuestionButton(props) {
-    const { getNextQuestion } = props;
+    const { getNextQuestion, currentQuestion } = props;
+
+    const displayButton = () => {
+        return currentQuestion === 10 ? "none" : "";
+    };
     return (
-        <button className="btn" onClick={getNextQuestion}>
+        <button
+            style={{ display: displayButton() }}
+            className="btn"
+            onClick={getNextQuestion}
+        >
             Next question
         </button>
     );

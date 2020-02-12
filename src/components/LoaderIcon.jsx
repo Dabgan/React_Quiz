@@ -1,7 +1,6 @@
 import React from "react";
 
 function LoaderIcon({ loaderIcon }) {
-    console.log(loaderIcon);
     const isIconVisible = loaderIcon ? "block" : "none";
     return (
         <div

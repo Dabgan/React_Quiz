@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import QuestionPanel from "./QuestionPanel";
 import AnswerPanel from "./AnswerPanel";
-import SubmitButton from "../../SubmitButton";
 import NextQuestionButton from "../../NextQuestionButton";
 import LoaderIcon from "../../LoaderIcon";
+import FinishQuizButton from "../../FinishQuizButton";
 
 class QuizPanel extends Component {
     state = {
+        test: true,
         loaderIcon: true,
         submitAnswer: false,
         questions: [
@@ -23,13 +24,14 @@ class QuizPanel extends Component {
         ],
         answers: [[], [], [], [], [], [], [], [], [], []],
         currentQuestion: 1,
+        points: 0,
         actualQuestion: "",
         actuanAnswers: []
     };
 
     componentDidMount = () => {
         fetch(
-            "https://opentdb.com/api.php?amount=10&category=15&difficulty=easy&type=multiple"
+            "https://opentdb.com/api.php?amount=10&category=20&difficulty=easy&type=multiple"
         )
             .then(res => {
                 return res.json();
@@ -56,7 +58,7 @@ class QuizPanel extends Component {
                         isMarked: false,
                         submitedAnswerClass: ""
                     }));
-
+                    console.log(answer.correct_answer);
                     return answers;
                 });
 
@@ -71,12 +73,10 @@ class QuizPanel extends Component {
                 });
             });
     };
-
     htmlDecode = input => {
         const doc = new DOMParser().parseFromString(input, "text/html");
         return doc.documentElement.textContent;
     };
-
     selectAnswer = e => {
         const clickedAnswer = parseInt(e.target.id);
         this.setState(
@@ -86,6 +86,7 @@ class QuizPanel extends Component {
                     : (answer.isMarked = false);
             })
         );
+        this.submitAnswer();
     };
 
     submitAnswer = () => {
@@ -96,6 +97,11 @@ class QuizPanel extends Component {
             this.state.actuanAnswers.map(answer => {
                 if (answer.isMarked && !answer.isCorrect) {
                     return (answer.submitedAnswerClass = " wrong");
+                } else if (answer.isMarked && answer.isCorrect) {
+                    return (
+                        (answer.submitedAnswerClass = " correct"),
+                        this.setState({ points: this.state.points + 1 })
+                    );
                 } else if (answer.isCorrect) {
                     return (answer.submitedAnswerClass = " correct");
                 } else {
@@ -124,9 +130,6 @@ class QuizPanel extends Component {
                 currentQuestion: this.state.currentQuestion + 1
             });
             this.setState({ submitAnswer: false });
-        } else {
-            console.log(this.state.currentQuestion);
-            alert("Quiz over!");
         }
     };
 
@@ -145,9 +148,14 @@ class QuizPanel extends Component {
                         answers={this.state.actuanAnswers}
                     />
                     <div>
-                        <SubmitButton onSubmit={this.submitAnswer} />
                         <NextQuestionButton
                             getNextQuestion={this.getNextQuestion}
+                            currentQuestion={this.state.currentQuestion}
+                        />
+                        <FinishQuizButton
+                            points={this.state.points}
+                            currentQuestion={this.state.currentQuestion}
+                            isSubmitted={this.state.submitAnswer}
                         />
                     </div>
                 </div>

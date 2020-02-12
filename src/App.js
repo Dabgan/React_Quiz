@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import "./styles/App.css";
 import MainView from "./components/pages/main page/MainView";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Quiz from "./components/pages/quiz/QuizPanel";
+import Quiz from "./components/pages/quiz page/QuizPanel";
+import Statistics from "./components/pages/statistic page/Statistics";
 
 class App extends Component {
     render() {
@@ -13,6 +14,7 @@ class App extends Component {
                     <MainView />
                 </Route>
                 <Route path="/quiz" component={Quiz} />
+                <Route path="/statistics" component={Statistics} />
             </Router>
         );
     }
