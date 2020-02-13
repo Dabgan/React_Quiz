@@ -31,7 +31,7 @@ class QuizPanel extends Component {
 
     componentDidMount = () => {
         fetch(
-            "https://opentdb.com/api.php?amount=10&category=20&difficulty=easy&type=multiple"
+            "https://opentdb.com/api.php?amount=10&category=27&difficulty=medium&type=multiple"
         )
             .then(res => {
                 return res.json();
@@ -141,6 +141,7 @@ class QuizPanel extends Component {
                     <QuestionPanel
                         question={this.state.actualQuestion}
                         currentQuestion={this.state.currentQuestion}
+                        points={this.state.points}
                     />
                     <AnswerPanel
                         isSubmitted={this.state.submitAnswer}

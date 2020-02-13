@@ -9,7 +9,7 @@ function NextQuestionButton(props) {
     return (
         <button
             style={{ display: displayButton() }}
-            className="btn"
+            className="btn btn-next-question"
             onClick={getNextQuestion}
         >
             Next question

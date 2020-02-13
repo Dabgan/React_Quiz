@@ -1,14 +1,19 @@
 import React from "react";
 
-function QuestionPanel({ question, currentQuestion }) {
+function QuestionPanel({ question, currentQuestion, points }) {
     return (
         <div className="question-panel">
             <div className="content">
-                <div className="counter">
+                <p>
+                    Points: <span>{points}</span>
+                </p>
+                <p>
                     Question: <span>{currentQuestion}/10</span>
-                </div>
+                </p>
             </div>
-            <h1 className="question-heading">{question.quest}</h1>
+            <div className="counter">
+                <h1 className="question-heading">{question.quest}</h1>
+            </div>
         </div>
     );
 }

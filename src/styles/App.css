@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700|Varela+Round&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -16,10 +17,9 @@
     GLOBAL
 ----------------------------------------------------- */
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Lato", sans-serif;
   line-height: 1.4;
-  background-color: #081a33;
-  color: #ffffff;
+  background-color: #e5e5e5;
   font-size: 18px;
 }
 
@@ -31,11 +31,26 @@ a {
 .btn {
   font-size: 1.2rem;
   padding: 10px;
-  margin: 10px 0;
+  margin: 20px 0 0;
   border-radius: 10px;
-  background-color: #a2d7d5;
-  border: 2px solid #46a49f;
+  background-color: #b9eaff;
+  border: 2px solid #009de1;
+  font-family: "Varela Round", sans-serif;
   cursor: pointer;
+  -webkit-transition: background-color 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #61d1ff;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+}
+
+.btn:focus {
+  -moz-outline-radius: 10px;
 }
 
 .h1 {
@@ -52,6 +67,12 @@ a {
   cursor: initial;
 }
 
+.btn-next-question:hover {
+  background-color: #61d1ff;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
 /* ---------------------------------------------------
     MAIN VIEW
 ----------------------------------------------------- */
@@ -66,6 +87,7 @@ a {
       -ms-flex-align: center;
           align-items: center;
   height: 100vh;
+  background-color: #ffffff;
 }
 
 .main-panel {
@@ -83,10 +105,12 @@ a {
       -ms-flex-align: center;
           align-items: center;
   width: 650px;
-  height: 450px;
-  border: 2px solid green;
-  border-radius: 10px;
+  height: 500px;
+  border: 6px solid #61d1ff;
+  border-radius: 15px;
   text-align: center;
+  padding: 30px;
+  background-color: #ffffff;
 }
 
 /* ---------------------------------------------------
@@ -97,14 +121,15 @@ a {
       -ms-flex-align: stretch;
           align-items: stretch;
   position: relative;
+  background-color: #ffffff;
 }
 
 .loader-icon {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 10px solid #f55474;
-  border-top: 10px solid #950924;
+  border: 10px solid #61d1ff;
+  border-top: 10px solid #009de1;
   -webkit-animation: loading 2s linear infinite;
           animation: loading 2s linear infinite;
   position: absolute;
@@ -115,31 +140,52 @@ a {
     QUESTION PANEL
 ----------------------------------------------------- */
 .question-panel {
-  border: 2px solid red;
   -webkit-box-flex: 0;
       -ms-flex: 0 1 50%;
           flex: 0 1 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
 }
 
 .content {
-  border: 2px solid yellow;
-  height: 40px;
   font-size: 1.3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.counter {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .question-heading {
   font-size: 2rem;
-  margin: 20px auto;
+  margin: auto auto;
 }
 
 /* ---------------------------------------------------
     ANSWERS PANEL
 ----------------------------------------------------- */
 .answers-panel {
-  border: 2px solid blue;
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -153,6 +199,8 @@ a {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 45%;
           flex: 1 1 45%;
+  font-size: 1.3rem;
+  font-family: "Varela Round", sans-serif;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -162,7 +210,9 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 2px solid #1eea2d;
+  border: 2px solid #009de1;
+  margin: 10px;
+  border-radius: 25px;
   cursor: pointer;
 }
 
@@ -171,11 +221,11 @@ a {
 }
 
 .correct {
-  background-color: #0d8616;
+  background-color: #53c894;
 }
 
 .wrong {
-  background-color: #b81148;
+  background-color: #ff5c42;
 }
 
 /* ---------------------------------------------------

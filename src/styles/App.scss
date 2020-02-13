@@ -1,3 +1,12 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700|Varela+Round&display=swap");
+
+$container-color: #ffffff;
+$main-color: #61d1ff;
+$main-color-light: #b9eaff;
+$main-color-dark: #009de1;
+$main-font: "Lato", sans-serif;
+$secondary-font: "Varela Round", sans-serif;
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -14,10 +23,9 @@
 ----------------------------------------------------- */
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $main-font;
     line-height: 1.4;
-    background-color: #081a33;
-    color: #ffffff;
+    background-color: #e5e5e5;
     font-size: 18px;
 }
 
@@ -29,11 +37,20 @@ a {
 .btn {
     font-size: 1.2rem;
     padding: 10px;
-    margin: 10px 0;
+    margin: 20px 0 0;
     border-radius: 10px;
-    background-color: #a2d7d5;
-    border: 2px solid #46a49f;
+    background-color: $main-color-light;
+    border: 2px solid $main-color-dark;
+    font-family: $secondary-font;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    &:hover {
+        background-color: $main-color;
+        transform: translateY(-5px);
+    }
+    &:focus {
+        -moz-outline-radius: 10px;
+    }
 }
 .h1 {
     font-size: 2rem;
@@ -46,6 +63,12 @@ a {
     border: 2px solid #245553;
     cursor: initial;
 }
+.btn-next-question {
+    &:hover {
+        background-color: $main-color;
+        transform: translateY(0);
+    }
+}
 
 /* ---------------------------------------------------
     MAIN VIEW
@@ -56,6 +79,7 @@ a {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #ffffff;
 }
 
 .main-panel {
@@ -64,10 +88,12 @@ a {
     justify-content: center;
     align-items: center;
     width: 650px;
-    height: 450px;
-    border: 2px solid green;
-    border-radius: 10px;
+    height: 500px;
+    border: 6px solid $main-color;
+    border-radius: 15px;
     text-align: center;
+    padding: 30px;
+    background-color: $container-color;
 }
 
 /* ---------------------------------------------------
@@ -77,65 +103,85 @@ a {
 .quiz-panel {
     align-items: stretch;
     position: relative;
+    background-color: $container-color;
 }
 .loader-icon {
     width: 100px;
     height: 100px;
-    // background-color: yellow;
     border-radius: 50%;
-    border: 10px solid #f55474;
-    border-top: 10px solid #950924;
+    border: 10px solid $main-color;
+    border-top: 10px solid $main-color-dark;
     animation: loading 2s linear infinite;
     position: absolute;
     margin: auto 40.9%;
-    // display: ;
 }
 
 /* ---------------------------------------------------
     QUESTION PANEL
 ----------------------------------------------------- */
 .question-panel {
-    border: 2px solid red;
+    // border: 2px solid red;
     flex: 0 1 50%;
-    // display: none;
+    display: flex;
+    flex-flow: column;
+    // justify-content: center;
 }
 .content {
-    border: 2px solid yellow;
-    height: 40px;
+    // border: 2px solid yellow;
     font-size: 1.3rem;
+    display: flex;
+    justify-content: space-between;
+}
+.counter {
+    // border: 2px solid red;
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
 .question-heading {
+    // border: 2px solid green;
     font-size: 2rem;
-    margin: 20px auto;
+    margin: auto auto;
+    // display: flex;
+    // flex-flow: column;
+    // justify-content: center;
 }
 
 /* ---------------------------------------------------
     ANSWERS PANEL
 ----------------------------------------------------- */
 .answers-panel {
-    border: 2px solid blue;
-    flex: 1;
+    // border: 2px solid blue;
+    flex: 1 0 auto;
     display: flex;
     flex-flow: row wrap;
-    // display: none;
 }
 .answer {
     flex: 1 1 45%;
+    font-size: 1.3rem;
+    font-family: $secondary-font;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #1eea2d;
+    // background-color: #ffffff;
+    border: 2px solid $main-color-dark;
+    margin: 10px;
+    border-radius: 25px;
     cursor: pointer;
+    // transition: background-color 0.3s ease-in-out;
+    &:hover {
+        // background-color: $secondary-color-ligh;
+    }
 }
 .marked {
     // background-color: #0d8616;
     background-color: #1a53a2;
 }
 .correct {
-    background-color: #0d8616;
+    background-color: #53c894;
 }
 .wrong {
-    background-color: #b81148;
+    background-color: #ff5c42;
 }
 /* ---------------------------------------------------
     STATISTICS
