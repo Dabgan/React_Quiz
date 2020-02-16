@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Statistics(props) {
+    // console.log(props.location);
+    // console.log(props.location);
+
     return (
         <div className="container">
             <div className="main-panel h1">
@@ -10,9 +13,9 @@ function Statistics(props) {
                     You got {props.location.state.points} out of 10 points in
                     quiz. Would you like to try again?
                 </p>
-                <button className="btn">
-                    <Link to="/quiz">Try again</Link>
-                </button>
+                <Link to="/">
+                    <button className="btn">Try again?</button>
+                </Link>
             </div>
         </div>
     );

@@ -7,22 +7,15 @@ import FinishQuizButton from "../../FinishQuizButton";
 
 class QuizPanel extends Component {
     state = {
-        test: true,
+        apiURL: this.props.location.state.apiURL,
+        // "https://opentdb.com/api.php?amount=10&category=27&difficulty=medium&type=multiple",
+        // "x",
+        questionCategory: this.props.location.state.category,
+        isAnswerChosen: false,
         loaderIcon: true,
         submitAnswer: false,
-        questions: [
-            "asdas",
-            "asdasd",
-            "s??",
-            "asdasd",
-            "s??",
-            "asdasd",
-            "s??",
-            "asdasd",
-            "s??",
-            "XDD"
-        ],
-        answers: [[], [], [], [], [], [], [], [], [], []],
+        questions: [],
+        answers: [],
         currentQuestion: 1,
         points: 0,
         actualQuestion: "",
@@ -30,9 +23,8 @@ class QuizPanel extends Component {
     };
 
     componentDidMount = () => {
-        fetch(
-            "https://opentdb.com/api.php?amount=10&category=27&difficulty=medium&type=multiple"
-        )
+        fetch(this.state.apiURL)
+            .then(console.log(this.props.location.state.category))
             .then(res => {
                 return res.json();
             })
@@ -56,7 +48,7 @@ class QuizPanel extends Component {
                         text: this.htmlDecode(answerChoices[index]),
                         isCorrect: isAnswerCorrect(index),
                         isMarked: false,
-                        submitedAnswerClass: ""
+                        submitedAnswerClass: "answer-hover"
                     }));
                     console.log(answer.correct_answer);
                     return answers;
@@ -109,11 +101,13 @@ class QuizPanel extends Component {
                 }
             })
         );
-        this.setState({ submitAnswer: true });
+        this.setState({ isAnswerChosen: false, submitAnswer: true });
     };
 
     showSelectAnswer = () => {
-        console.log(`please select answer`);
+        this.setState({
+            isAnswerChosen: true
+        });
     };
 
     getNextQuestion = () => {
@@ -142,6 +136,8 @@ class QuizPanel extends Component {
                         question={this.state.actualQuestion}
                         currentQuestion={this.state.currentQuestion}
                         points={this.state.points}
+                        isAnswerChosen={this.state.isAnswerChosen}
+                        questionCategory={this.state.questionCategory}
                     />
                     <AnswerPanel
                         isSubmitted={this.state.submitAnswer}

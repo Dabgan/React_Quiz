@@ -65,6 +65,7 @@ a {
   background-color: #45a09c;
   border: 2px solid #245553;
   cursor: initial;
+  pointer-events: none;
 }
 
 .btn-next-question:hover {
@@ -113,13 +114,32 @@ a {
   background-color: #ffffff;
 }
 
+.categories-label {
+  margin: 20px 0 0;
+}
+
+.categories {
+  font-size: 1.2rem;
+  padding: 10px;
+  font-family: "Varela Round", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+.categories select {
+  border: none;
+  border: 2px solid #009de1;
+}
+
 /* ---------------------------------------------------
     QUIZZ VIEW
 ----------------------------------------------------- */
 .quiz-panel {
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
   position: relative;
   background-color: #ffffff;
 }
@@ -130,10 +150,9 @@ a {
   border-radius: 50%;
   border: 10px solid #61d1ff;
   border-top: 10px solid #009de1;
+  position: absolute;
   -webkit-animation: loading 2s linear infinite;
           animation: loading 2s linear infinite;
-  position: absolute;
-  margin: auto 40.9%;
 }
 
 /* ---------------------------------------------------
@@ -150,6 +169,8 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-flow: column;
           flex-flow: column;
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
 }
 
 .content {
@@ -157,9 +178,18 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+}
+
+.content p {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.question-category {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
 }
 
 .counter {
@@ -179,6 +209,24 @@ a {
   margin: auto auto;
 }
 
+.warning {
+  color: #fd1313;
+  font-size: 1.3rem;
+  visibility: hidden;
+}
+
+.error {
+  -webkit-animation: shake 0.92s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+          animation: shake 0.92s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  visibility: visible;
+}
+
 /* ---------------------------------------------------
     ANSWERS PANEL
 ----------------------------------------------------- */
@@ -193,6 +241,8 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
 }
 
 .answer {
@@ -216,16 +266,21 @@ a {
   cursor: pointer;
 }
 
-.marked {
-  background-color: #1a53a2;
+.answer-hover {
+  -webkit-transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.answer-hover:hover {
+  background-color: #b9eaff;
 }
 
 .correct {
-  background-color: #53c894;
+  background-color: #9cea0b;
 }
 
 .wrong {
-  background-color: #ff5c42;
+  background-color: #fd1313;
 }
 
 /* ---------------------------------------------------
@@ -252,6 +307,54 @@ a {
   100% {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes shake {
+  10%,
+  90% {
+    -webkit-transform: translate3d(-4px, 0, 0);
+            transform: translate3d(-4px, 0, 0);
+  }
+  20%,
+  80% {
+    -webkit-transform: translate3d(6px, 0, 0);
+            transform: translate3d(6px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+            transform: translate3d(-10px, 0, 0);
+  }
+  40%,
+  60% {
+    -webkit-transform: translate3d(10px, 0, 0);
+            transform: translate3d(10px, 0, 0);
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    -webkit-transform: translate3d(-4px, 0, 0);
+            transform: translate3d(-4px, 0, 0);
+  }
+  20%,
+  80% {
+    -webkit-transform: translate3d(6px, 0, 0);
+            transform: translate3d(6px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+            transform: translate3d(-10px, 0, 0);
+  }
+  40%,
+  60% {
+    -webkit-transform: translate3d(10px, 0, 0);
+            transform: translate3d(10px, 0, 0);
   }
 }
 /*# sourceMappingURL=App.css.map */

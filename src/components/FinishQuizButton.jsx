@@ -9,22 +9,22 @@ const FinishQuizButton = ({ points, currentQuestion, isSubmitted }) => {
     return (
         <React.Fragment>
             {isSubmitted ? (
-                <button
-                    style={{ display: displayButton() }}
-                    className="btn"
-                    points={points}
+                <Link
+                    to={{
+                        pathname: "/statistics",
+                        state: {
+                            points: points
+                        }
+                    }}
                 >
-                    <Link
-                        to={{
-                            pathname: "/statistics",
-                            state: {
-                                points: points
-                            }
-                        }}
+                    <button
+                        style={{ display: displayButton() }}
+                        className="btn"
+                        points={points}
                     >
                         Finish Quiz
-                    </Link>
-                </button>
+                    </button>
+                </Link>
             ) : (
                 <button
                     disabled
