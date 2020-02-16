@@ -31,7 +31,6 @@ a {
 .btn {
   font-size: 1.2rem;
   padding: 10px;
-  margin: 20px 0 0;
   border-radius: 10px;
   background-color: #b9eaff;
   border: 2px solid #009de1;
@@ -66,12 +65,6 @@ a {
   border: 2px solid #245553;
   cursor: initial;
   pointer-events: none;
-}
-
-.btn-next-question:hover {
-  background-color: #61d1ff;
-  -webkit-transform: translateY(0);
-          transform: translateY(0);
 }
 
 /* ---------------------------------------------------
@@ -114,6 +107,10 @@ a {
   background-color: #ffffff;
 }
 
+.btn-start {
+  margin-top: 30px;
+}
+
 .categories-label {
   margin: 20px 0 0;
 }
@@ -134,6 +131,47 @@ a {
 .categories select {
   border: none;
   border: 2px solid #009de1;
+}
+
+.control-buttons {
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.control-buttons .prompt {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.btn-next-question:hover {
+  background-color: #61d1ff;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.btn-prompt {
+  font-size: 0.9rem;
+  padding: 6px;
+  background-color: #adf724;
+}
+
+.btn-prompt:hover {
+  background-color: #8fd70b;
+}
+
+.btn-prompt-disabled {
+  background-color: #3aae09;
+  border: 2px solid #245553;
+  cursor: initial;
+  pointer-events: none;
 }
 
 /* ---------------------------------------------------
@@ -276,7 +314,7 @@ a {
 }
 
 .correct {
-  background-color: #9cea0b;
+  background-color: #8fd70b;
 }
 
 .wrong {

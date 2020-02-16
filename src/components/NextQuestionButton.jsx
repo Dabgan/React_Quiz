@@ -7,13 +7,15 @@ function NextQuestionButton(props) {
         return currentQuestion === 10 ? "none" : "";
     };
     return (
-        <button
-            style={{ display: displayButton() }}
-            className="btn btn-next-question"
-            onClick={getNextQuestion}
-        >
-            Next question
-        </button>
+        <div>
+            <button
+                style={{ display: displayButton() }}
+                className="btn btn-next-question"
+                onClick={getNextQuestion}
+            >
+                Next question
+            </button>
+        </div>
     );
 }
 

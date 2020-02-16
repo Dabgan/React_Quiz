@@ -56,7 +56,7 @@ export class MainPanel extends Component {
                                 category: this.state.category
                             }
                         }}
-                        className="btn"
+                        className="btn btn-start"
                     >
                         Start Quiz
                     </Link>

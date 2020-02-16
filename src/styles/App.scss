@@ -6,6 +6,10 @@ $main-color-light: #b9eaff;
 $main-color-dark: #009de1;
 $main-font: "Lato", sans-serif;
 $secondary-font: "Varela Round", sans-serif;
+$correct-color-light: #adf724;
+$correct-color: #8fd70b;
+$correct-color-dark: #3aae09;
+$wrong-color: #fd1313;
 
 * {
     box-sizing: border-box;
@@ -37,7 +41,7 @@ a {
 .btn {
     font-size: 1.2rem;
     padding: 10px;
-    margin: 20px 0 0;
+    // margin: 20px 0 0;
     border-radius: 10px;
     background-color: $main-color-light;
     border: 2px solid $main-color-dark;
@@ -63,12 +67,6 @@ a {
     border: 2px solid #245553;
     cursor: initial;
     pointer-events: none;
-}
-.btn-next-question {
-    &:hover {
-        background-color: $main-color;
-        transform: translateY(0);
-    }
 }
 
 /* ---------------------------------------------------
@@ -96,34 +94,57 @@ a {
     padding: 30px;
     background-color: $container-color;
 }
+.btn-start {
+    margin-top: 30px;
+}
 
 .categories-label {
-    // border: 2px solid red;
-    // text-align: left;
-    // font-size: 1.2rem;
-    // padding: 10px;
     margin: 20px 0 0;
-    // border-radius: 10px;
-    // background-color: $main-color-light;
-    // border: 2px solid $main-color-dark;
-    // font-family: $secondary-font;
-    // cursor: pointer;
 }
 .categories {
     font-size: 1.2rem;
     padding: 10px;
-    // margin: 20px 0 0;
-    // border-radius: 0 0 10px 10px;
-    // background-color: $main-color-light;
-    // border: 2px solid $main-color-dark;
     font-family: $secondary-font;
-    // cursor: pointer;
     display: flex;
     flex-flow: column;
     select {
         border: none;
         border: 2px solid $main-color-dark;
     }
+}
+
+.control-buttons {
+    // border: 2px solid green;
+    align-self: stretch;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    .prompt {
+        flex: 1;
+    }
+}
+
+.btn-next-question {
+    &:hover {
+        background-color: $main-color;
+        transform: translateY(0);
+    }
+}
+
+.btn-prompt {
+    font-size: 0.9rem;
+    padding: 6px;
+    background-color: $correct-color-light;
+    &:hover {
+        background-color: $correct-color;
+    }
+}
+
+.btn-prompt-disabled {
+    background-color: $correct-color-dark;
+    border: 2px solid #245553;
+    cursor: initial;
+    pointer-events: none;
 }
 
 /* ---------------------------------------------------
@@ -223,10 +244,10 @@ a {
     }
 }
 .correct {
-    background-color: #9cea0b;
+    background-color: $correct-color;
 }
 .wrong {
-    background-color: #fd1313;
+    background-color: $wrong-color;
 }
 /* ---------------------------------------------------
     STATISTICS
