@@ -9,8 +9,8 @@ import MainPanel from "./components/pages/main page/MainPanel";
 class App extends Component {
     render() {
         return (
-            <Router>
-                <Route basename={process.env.PUBLIC_URL} exact path="/">
+            <Router basename={process.env.PUBLIC_URL}>
+                <Route exact path="/">
                     <MainPanel />
                 </Route>
                 <Route path="/quiz" component={Quiz} />
