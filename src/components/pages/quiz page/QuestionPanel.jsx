@@ -1,30 +1,35 @@
 import React from "react";
+import FiftyFiftyButton from "../../FiftyFiftyButton";
+import DeleteOneButton from "../../DeleteOneButton";
 
 function QuestionPanel({
     question,
     currentQuestion,
-    points,
     isAnswerChosen,
-    questionCategory
+    isAvailableFiftyFifty,
+    isAvailableDeleteOne,
+    fiftyFifty,
+    deleteOne
 }) {
     const isAnswerSubmitted = isAnswerChosen ? "warning error" : "warning";
     return (
         <div className="question-panel">
-            <div className="content">
-                <p>
-                    Points: <span>{points}</span>
-                </p>
-                <p className="question-category">
-                    Category:{" "}
-                    <span style={{ fontWeight: "600" }}>
-                        {questionCategory}
-                    </span>
-                </p>
-                <p>
-                    Question: <span>{currentQuestion}/10</span>
-                </p>
+            <div className="quiz-information">
+                <FiftyFiftyButton
+                    fiftyFifty={fiftyFifty}
+                    isAvailable={isAvailableFiftyFifty}
+                />
+
+                <span className=" question-counter">
+                    <span>{currentQuestion}/10</span>
+                </span>
+
+                <DeleteOneButton
+                    deleteOne={deleteOne}
+                    isAvailable={isAvailableDeleteOne}
+                />
             </div>
-            <div className="counter">
+            <div className="question-container">
                 <h1 className="question-heading">{question.quest}</h1>
             </div>
             <p className={isAnswerSubmitted}>Please select an answer!</p>

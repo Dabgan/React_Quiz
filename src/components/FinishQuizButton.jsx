@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const FinishQuizButton = ({ points, currentQuestion, isSubmitted }) => {
+const FinishQuizButton = ({
+    points,
+    currentQuestion,
+    isSubmitted,
+    quizLength
+}) => {
     const displayButton = () => {
-        return currentQuestion === 10 ? "" : "none";
+        return currentQuestion === quizLength ? "" : "none";
     };
 
     return (
@@ -19,7 +24,7 @@ const FinishQuizButton = ({ points, currentQuestion, isSubmitted }) => {
                 >
                     <button
                         style={{ display: displayButton() }}
-                        className="btn"
+                        className="btn btn-finish-quiz"
                         points={points}
                     >
                         Finish Quiz
@@ -29,7 +34,7 @@ const FinishQuizButton = ({ points, currentQuestion, isSubmitted }) => {
                 <button
                     disabled
                     style={{ display: displayButton() }}
-                    className="btn btn-disabled"
+                    className="btn btn-finish-quiz btn-disabled"
                     points={points}
                 >
                     Finish Quiz

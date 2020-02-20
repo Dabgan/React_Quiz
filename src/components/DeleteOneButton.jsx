@@ -1,15 +1,15 @@
 import React from "react";
 
 function DeleteOneButton({ deleteOne, isAvailable }) {
-    const buttonStyle = isAvailable ? "" : "btn-prompt-disabled";
+    const buttonStyle = isAvailable ? "" : "btn-disabled";
 
     return (
         <div className="prompt">
             <button
                 className={"btn btn-prompt " + buttonStyle}
-                onClick={deleteOne}
+                onClick={() => deleteOne(isAvailable)}
             >
-                Delete One
+                Delete one
             </button>
         </div>
     );

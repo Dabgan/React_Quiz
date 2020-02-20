@@ -1,11 +1,12 @@
 import React from "react";
 
 function NextQuestionButton(props) {
-    const { getNextQuestion, currentQuestion } = props;
+    const { getNextQuestion, currentQuestion, quizLength } = props;
 
     const displayButton = () => {
-        return currentQuestion === 10 ? "none" : "";
+        return currentQuestion === quizLength ? "none" : "";
     };
+
     return (
         <div>
             <button

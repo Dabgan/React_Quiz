@@ -4,28 +4,28 @@ import AnswerPanel from "./AnswerPanel";
 import NextQuestionButton from "../../NextQuestionButton";
 import LoaderIcon from "../../LoaderIcon";
 import FinishQuizButton from "../../FinishQuizButton";
-import FiftyFiftyButton from "../../FiftyFiftyButton";
-import DeleteOneButton from "../../DeleteOneButton";
 
 class QuizPanel extends Component {
     state = {
         apiURL: this.props.location.state.apiURL,
-        questionCategory: this.props.location.state.category,
+        // questionCategory: this.props.location.state.category,
         questions: [],
         answers: [],
         actualQuestion: "",
         actualAnswers: [],
         isAnswerChosen: false,
         submitAnswer: false,
-        deleteOne: true,
-        fiftyFifty: true,
+        deleteOneHint: true,
+        fiftyFiftyHint: true,
         currentQuestion: 1,
         points: 0,
         loaderIcon: true
     };
 
     componentDidMount = () => {
-        fetch(this.state.apiURL)
+        const { apiURL } = this.state;
+
+        fetch(apiURL)
             .then(res => {
                 return res.json();
             })
@@ -44,7 +44,7 @@ class QuizPanel extends Component {
                     const isAnswerCorrect = index => {
                         return answerChoices[index] === answer.correct_answer;
                     };
-                    const answers = answerChoices.map((a, index) => ({
+                    const answers = answerChoices.map((answer, index) => ({
                         id: index + 1,
                         text: this.htmlDecode(answerChoices[index]),
                         isCorrect: isAnswerCorrect(index),
@@ -65,14 +65,18 @@ class QuizPanel extends Component {
                 });
             });
     };
+
     htmlDecode = input => {
         const doc = new DOMParser().parseFromString(input, "text/html");
         return doc.documentElement.textContent;
     };
-    selectAnswer = e => {
-        const clickedAnswer = parseInt(e.target.id);
+
+    selectAnswer = event => {
+        const { actualAnswers } = this.state;
+        const clickedAnswer = parseInt(event.target.id);
+
         this.setState(
-            this.state.actualAnswers.map(answer => {
+            actualAnswers.map(answer => {
                 if (clickedAnswer === answer.id) {
                     return (answer.isMarked = true);
                 } else return answer;
@@ -82,19 +86,22 @@ class QuizPanel extends Component {
     };
 
     submitAnswer = () => {
-        if (this.state.submitAnswer) {
+        const { submitAnswer, actualAnswers, points } = this.state;
+
+        if (submitAnswer) {
             return;
         }
         this.setState(
-            this.state.actualAnswers.map(answer => {
-                if (answer.isMarked && !answer.isCorrect) {
+            actualAnswers.map(answer => {
+                const { isMarked, isCorrect } = answer;
+                if (isMarked && !isCorrect) {
                     return (answer.submitedAnswerClass = " wrong");
-                } else if (answer.isMarked && answer.isCorrect) {
+                } else if (isMarked && isCorrect) {
                     return (
                         (answer.submitedAnswerClass = " correct"),
-                        this.setState({ points: this.state.points + 1 })
+                        this.setState({ points: points + 1 })
                     );
-                } else if (answer.isCorrect) {
+                } else if (isCorrect) {
                     return (answer.submitedAnswerClass = " correct");
                 } else {
                     return (answer.submitedAnswerClass = " ");
@@ -104,24 +111,30 @@ class QuizPanel extends Component {
         this.setState({ isAnswerChosen: false, submitAnswer: true });
     };
 
-    showSelectAnswer = () => {
+    showWarningSelectAnswer = () => {
         this.setState({
             isAnswerChosen: true
         });
     };
 
     getNextQuestion = () => {
-        if (!this.state.submitAnswer) {
-            this.showSelectAnswer();
+        const {
+            submitAnswer,
+            currentQuestion,
+            questions,
+            answers
+        } = this.state;
+
+        if (!submitAnswer) {
+            this.showWarningSelectAnswer();
             return;
         }
-
-        if (this.state.currentQuestion < this.state.questions.length) {
-            const number = this.state.currentQuestion;
+        if (currentQuestion < questions.length) {
+            const number = currentQuestion;
             this.setState({
-                actualQuestion: this.state.questions[number],
-                actualAnswers: this.state.answers[number],
-                currentQuestion: this.state.currentQuestion + 1
+                actualQuestion: questions[number],
+                actualAnswers: answers[number],
+                currentQuestion: currentQuestion + 1
             });
             this.setState({ submitAnswer: false });
         }
@@ -132,57 +145,14 @@ class QuizPanel extends Component {
         return random;
     };
 
-    fiftyFifty = () => {
-        if (this.state.fiftyFifty) {
-            const newArray = this.state.actualAnswers
+    deleteAnswer = hint => {
+        const { actualAnswers } = this.state;
+
+        if (hint) {
+            const arrayFiltered = actualAnswers
                 .filter(answer => answer.isCorrect === false)
                 .filter(answer => answer.submitedAnswerClass !== "wrong");
-
-            console.table(newArray);
-            const randomNumber = this.getRandomNumber(newArray.length);
-
-            const newArrayMapped = newArray.map((answer, index) => {
-                if (index === randomNumber) {
-                    return (
-                        (answer.submitedAnswerClass = "wrong"),
-                        (answer.isMarked = true)
-                    );
-                } else return answer;
-            });
-
-            const newArrayMappedFiltered = newArrayMapped
-                .filter(answer => answer.isCorrect === false)
-                .filter(answer => answer.submitedAnswerClass !== "wrong");
-
-            const randomNumber2 = this.getRandomNumber(
-                newArrayMappedFiltered.length
-            );
-
-            const finalArray = newArrayMappedFiltered.map((answer, index) => {
-                if (index === randomNumber2) {
-                    return (
-                        (answer.submitedAnswerClass = "wrong"),
-                        (answer.isMarked = true)
-                    );
-                } else return answer;
-            });
-
-            this.setState(finalArray);
-
-            this.setState({
-                fiftyFifty: false
-            });
-        }
-    };
-
-    deleteOneAnswer = () => {
-        if (this.state.deleteOne) {
-            const arrayFiltered = this.state.actualAnswers
-                .filter(answer => answer.isCorrect === false)
-                .filter(answer => answer.submitedAnswerClass !== "wrong");
-
             const randomNumber = this.getRandomNumber(arrayFiltered.length);
-
             const finalArray = arrayFiltered.map((answer, index) => {
                 if (index === randomNumber) {
                     return (
@@ -191,50 +161,76 @@ class QuizPanel extends Component {
                     );
                 } else return answer;
             });
-
             this.setState(finalArray);
-            this.setState({
-                deleteOne: false
-            });
         }
     };
 
+    deleteOneAnswer = hint => {
+        this.deleteAnswer(hint);
+        this.setState({
+            deleteOneHint: false
+        });
+    };
+
+    deleteTwoAnswers = hint => {
+        this.deleteAnswer(hint);
+        this.deleteAnswer(hint);
+        this.setState({
+            fiftyFiftyHint: false
+        });
+    };
+
     render() {
+        const {
+            loaderIcon,
+            actualQuestion,
+            currentQuestion,
+            points,
+            isAnswerChosen,
+            submitAnswer,
+            actualAnswers,
+            fiftyFiftyHint,
+            deleteOneHint,
+            questions
+        } = this.state;
+
+        const {
+            selectAnswer,
+            deleteOneAnswer,
+            deleteTwoAnswers,
+            getNextQuestion
+        } = this;
+
         return (
             <div className="container">
                 <div className="main-panel quiz-panel">
-                    <LoaderIcon loaderIcon={this.state.loaderIcon} />
+                    <LoaderIcon loaderIcon={loaderIcon} />
                     <QuestionPanel
-                        question={this.state.actualQuestion}
-                        currentQuestion={this.state.currentQuestion}
-                        points={this.state.points}
-                        isAnswerChosen={this.state.isAnswerChosen}
-                        questionCategory={this.state.questionCategory}
+                        question={actualQuestion}
+                        currentQuestion={currentQuestion}
+                        isAnswerChosen={isAnswerChosen}
+                        isAvailableDeleteOne={deleteOneHint}
+                        isAvailableFiftyFifty={fiftyFiftyHint}
+                        deleteOne={deleteOneAnswer}
+                        fiftyFifty={deleteTwoAnswers}
                     />
                     <AnswerPanel
-                        isSubmitted={this.state.submitAnswer}
-                        selectAnswer={this.selectAnswer}
-                        answers={this.state.actualAnswers}
+                        isSubmitted={submitAnswer}
+                        selectAnswer={selectAnswer}
+                        answers={actualAnswers}
                     />
-                    <div className="control-buttons">
-                        <FiftyFiftyButton
-                            fiftyFifty={this.fiftyFifty}
-                            isAvailable={this.state.fiftyFifty}
-                        />
-                        <NextQuestionButton
-                            getNextQuestion={this.getNextQuestion}
-                            currentQuestion={this.state.currentQuestion}
-                        />
-                        <FinishQuizButton
-                            points={this.state.points}
-                            currentQuestion={this.state.currentQuestion}
-                            isSubmitted={this.state.submitAnswer}
-                        />
-                        <DeleteOneButton
-                            deleteOne={this.deleteOneAnswer}
-                            isAvailable={this.state.deleteOne}
-                        />
-                    </div>
+
+                    <NextQuestionButton
+                        getNextQuestion={getNextQuestion}
+                        currentQuestion={currentQuestion}
+                        quizLength={questions.length}
+                    />
+                    <FinishQuizButton
+                        points={points}
+                        currentQuestion={currentQuestion}
+                        isSubmitted={submitAnswer}
+                        quizLength={questions.length}
+                    />
                 </div>
             </div>
         );

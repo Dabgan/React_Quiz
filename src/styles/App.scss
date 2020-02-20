@@ -1,15 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700|Varela+Round&display=swap");
 
-$container-color: #ffffff;
-$main-color: #61d1ff;
-$main-color-light: #b9eaff;
-$main-color-dark: #009de1;
+$background-color: #38108d;
+$container-color: #4b14b8;
+$container-color-dark: #1f094d;
+$answer-color: #300d77;
+$main-color: #28066b;
+$main-color-light: #eade09;
+$main-color-dark: #fccaab;
 $main-font: "Lato", sans-serif;
+$font-color: #cecece;
+$font-color-disabled: #9d9d9d;
 $secondary-font: "Varela Round", sans-serif;
 $correct-color-light: #adf724;
-$correct-color: #8fd70b;
+$correct-color: #23d70b;
 $correct-color-dark: #3aae09;
-$wrong-color: #fd1313;
+$wrong-color: #f9180d;
 
 * {
     box-sizing: border-box;
@@ -31,6 +36,7 @@ body {
     line-height: 1.4;
     background-color: #e5e5e5;
     font-size: 18px;
+    color: $font-color;
 }
 
 a {
@@ -39,34 +45,41 @@ a {
 }
 
 .btn {
-    font-size: 1.2rem;
-    padding: 10px;
-    // margin: 20px 0 0;
+    font-size: 1.1rem;
+    padding: 6px;
+    background-color: $answer-color;
+    border: 2px solid $main-color-light;
+    transition: all 0.3s ease-in-out;
+    color: $font-color;
     border-radius: 10px;
-    background-color: $main-color-light;
-    border: 2px solid $main-color-dark;
     font-family: $secondary-font;
+    margin-top: 30px;
+    padding: 15px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out,
+        color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     &:hover {
-        background-color: $main-color;
-        transform: translateY(-5px);
-    }
-    &:focus {
-        -moz-outline-radius: 10px;
+        color: #ffffff;
+        transform: translateY(-3px);
+        background-color: $container-color;
+        box-shadow: -1px -1px 4px $main-color-light,
+            1px 1px 4px $main-color-light;
     }
 }
+.btn-disabled {
+    background-color: $container-color-dark;
+    border: 2px solid $font-color;
+    cursor: initial;
+    pointer-events: none;
+    box-shadow: none;
+    color: $font-color-disabled;
+}
+
 .h1 {
     font-size: 2rem;
 }
 .big {
     font-size: 5rem;
-}
-.btn-disabled {
-    background-color: #45a09c;
-    border: 2px solid #245553;
-    cursor: initial;
-    pointer-events: none;
 }
 
 /* ---------------------------------------------------
@@ -78,7 +91,8 @@ a {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: $background-color;
+    background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23fffeff' fill-opacity='0.31'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 .main-panel {
@@ -87,12 +101,13 @@ a {
     justify-content: center;
     align-items: center;
     width: 650px;
-    height: 500px;
+    height: 550px;
     border: 6px solid $main-color;
-    border-radius: 15px;
+    // border-radius: 15px;
     text-align: center;
-    padding: 30px;
-    background-color: $container-color;
+    padding: 20px 30px;
+    // background-color: $container-color;
+    background: radial-gradient(rgb(106, 65, 185), rgb(48, 13, 119));
 }
 .btn-start {
     margin-top: 30px;
@@ -114,37 +129,26 @@ a {
 }
 
 .control-buttons {
-    // border: 2px solid green;
     align-self: stretch;
     margin-top: 20px;
     display: flex;
     align-items: center;
-    .prompt {
-        flex: 1;
-    }
 }
 
-.btn-next-question {
+.btn-next-question,
+.btn-finish-quiz {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: $answer-color;
+    border: 2px solid $main-color-light;
+    transition: all 0.3s ease-in-out;
     &:hover {
-        background-color: $main-color;
+        color: #ffffff;
+        background-color: $container-color;
+        box-shadow: -1px -1px 4px $main-color-light,
+            1px 1px 4px $main-color-light;
         transform: translateY(0);
     }
-}
-
-.btn-prompt {
-    font-size: 0.9rem;
-    padding: 6px;
-    background-color: $correct-color-light;
-    &:hover {
-        background-color: $correct-color;
-    }
-}
-
-.btn-prompt-disabled {
-    background-color: $correct-color-dark;
-    border: 2px solid #245553;
-    cursor: initial;
-    pointer-events: none;
 }
 
 /* ---------------------------------------------------
@@ -170,36 +174,67 @@ a {
 ----------------------------------------------------- */
 .question-panel {
     // border: 2px solid red;
-    flex: 0 1 50%;
+    flex: 0 1 60%;
     display: flex;
     flex-flow: column;
     align-self: stretch;
-    // justify-content: center;
 }
-.content {
-    font-size: 1.3rem;
+.quiz-information {
+    // border: 2px solid green;
     display: flex;
-    p {
-        // border: 2px solid red;
+    align-items: center;
+    // margin-bottom: 10px;
+    margin: 5px 0 15px;
+    font-size: 1.2rem;
+    .prompt {
         flex: 1;
     }
+    p {
+        // border: 2px solid red;
+        flex: 2;
+    }
 }
-.question-category {
-    // border: 2px solid red;
-    flex: 2;
+.btn-prompt {
+    padding: 6px;
+    margin-top: 0;
 }
-.counter {
+
+.question-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    user-select: none;
+    height: 30px;
+    width: 30px;
+    // background-color: $main-color;
+    background: radial-gradient(rgb(89, 46, 176), rgb(43, 10, 109));
+    box-shadow: -1px -1px 5px 3px $main-color-light,
+        1px 1px 5px 3px $main-color-light;
+    font-size: 1.2rem;
+    transform: rotate(45deg);
+    span {
+        display: block;
+        transform: rotate(-45deg);
+    }
+}
+.question-container {
     flex: 1;
     display: flex;
     align-items: center;
 }
+
 .question-heading {
-    // border: 2px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin: 15px auto auto;
+    padding: 0 15px;
+    background: radial-gradient(rgb(89, 46, 176), rgb(43, 10, 109));
+    border: 2px solid $main-color-dark;
     font-size: 2rem;
-    margin: auto auto;
-    // display: flex;
-    // flex-flow: column;
-    // justify-content: center;
 }
 .warning {
     color: #fd1313;
@@ -223,6 +258,18 @@ a {
     display: flex;
     flex-flow: row wrap;
     align-self: stretch;
+    :first-child {
+        margin: 5px 5px 5px 0;
+    }
+    :nth-child(2) {
+        margin: 5px 0 5px 5px;
+    }
+    :nth-child(3) {
+        margin: 5px 5px 0 0;
+    }
+    :last-child {
+        margin: 5px 0 0 5px;
+    }
 }
 .answer {
     flex: 1 1 45%;
@@ -231,30 +278,32 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    // background-color: #ffffff;
+    background-color: $answer-color;
     border: 2px solid $main-color-dark;
-    margin: 10px;
-    border-radius: 25px;
     cursor: pointer;
 }
 .answer-hover {
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+        border 0.3s ease-in-out;
     &:hover {
         background-color: $main-color-light;
+        color: #000000;
+        border: 2px solid #000000;
     }
 }
 .correct {
     background-color: $correct-color;
+    color: #000000;
+    border: 2px solid #000000;
 }
 .wrong {
     background-color: $wrong-color;
+    color: #000000;
+    border: 2px solid #000000;
 }
 /* ---------------------------------------------------
     STATISTICS
 ----------------------------------------------------- */
-// .finish-quiz-btn {
-//     display: none;
-// }
 
 /* ---------------------------------------------------
     ANIMATIONS
