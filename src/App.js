@@ -10,7 +10,7 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <Route exact path="/">
+                <Route basename={process.env.PUBLIC_URL} exact path="/">
                     <MainPanel />
                 </Route>
                 <Route path="/quiz" component={Quiz} />
