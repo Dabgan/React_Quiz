@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Statistics(props) {
     return (
         <div className="container">
-            <div className="main-panel h1">
+            <div className="main-panel h1 statistics-panel">
                 <h1>Congratulations!</h1>
                 <p>
                     You got {props.location.state.points} out of 10 points in

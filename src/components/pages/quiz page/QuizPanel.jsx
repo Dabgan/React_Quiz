@@ -213,6 +213,7 @@ class QuizPanel extends Component {
                         isAvailableFiftyFifty={fiftyFiftyHint}
                         deleteOne={deleteOneAnswer}
                         fiftyFifty={deleteTwoAnswers}
+                        loaderIcon={loaderIcon}
                     />
                     <AnswerPanel
                         isSubmitted={submitAnswer}
@@ -224,6 +225,7 @@ class QuizPanel extends Component {
                         getNextQuestion={getNextQuestion}
                         currentQuestion={currentQuestion}
                         quizLength={questions.length}
+                        loaderIcon={loaderIcon}
                     />
                     <FinishQuizButton
                         points={points}

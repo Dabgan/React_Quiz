@@ -27,6 +27,19 @@ export class MainPanel extends Component {
             <div className="container">
                 <div className="main-panel">
                     <h1 className="big">Quiz App</h1>
+
+                    <Link
+                        to={{
+                            pathname: "/quiz",
+                            state: {
+                                apiURL: apiURL,
+                                category: category
+                            }
+                        }}
+                        className="btn btn-start"
+                    >
+                        Start Quiz
+                    </Link>
                     <div className="categories">
                         <label
                             htmlFor="categories"
@@ -58,18 +71,6 @@ export class MainPanel extends Component {
                                 Animals
                             </option>
                         </select>
-                        <Link
-                            to={{
-                                pathname: "/quiz",
-                                state: {
-                                    apiURL: apiURL,
-                                    category: category
-                                }
-                            }}
-                            className="btn btn-start"
-                        >
-                            Start Quiz
-                        </Link>
                     </div>
                 </div>
             </div>
