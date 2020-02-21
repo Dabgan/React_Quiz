@@ -8,7 +8,6 @@ import FinishQuizButton from "../../FinishQuizButton";
 class QuizPanel extends Component {
     state = {
         apiURL: this.props.location.state.apiURL,
-        // questionCategory: this.props.location.state.category,
         questions: [],
         answers: [],
         actualQuestion: "",

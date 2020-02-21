@@ -454,7 +454,13 @@ a {
 /* ---------------------------------------------------
     RWD
 ----------------------------------------------------- */
-@media (min-width: 320px) and (max-width: 620px) {
+@media (min-width: 300px) and (max-width: 420px) {
+  .main-panel h1 {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 620px) {
   html {
     font-size: 14px;
   }
