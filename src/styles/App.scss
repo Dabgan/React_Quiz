@@ -68,9 +68,6 @@ a {
     box-shadow: none;
     pointer-events: none;
 }
-.h1 {
-    font-size: 2rem;
-}
 .big {
     font-size: 5rem;
 }
@@ -279,6 +276,15 @@ a {
 }
 .wrong {
     background-color: $wrong-color;
+}
+
+/* ---------------------------------------------------
+    STATISTICS
+----------------------------------------------------- */
+.statistics-panel {
+    h1 {
+        font-size: 3rem;
+    }
 }
 
 /* ---------------------------------------------------

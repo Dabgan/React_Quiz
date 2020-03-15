@@ -1,6 +1,5 @@
 import React from "react";
-import FiftyFiftyButton from "../../FiftyFiftyButton";
-import DeleteOneButton from "../../DeleteOneButton";
+import HintButton from "../../components/HintButton";
 
 function QuestionPanel({
     question,
@@ -17,10 +16,11 @@ function QuestionPanel({
     return (
         <div className="question-panel">
             <div className="quiz-information">
-                <FiftyFiftyButton
+                <HintButton
                     loaderIcon={loaderIcon}
-                    fiftyFifty={fiftyFifty}
+                    deleteMethod={fiftyFifty}
                     isAvailable={isAvailableFiftyFifty}
+                    btnText="50:50"
                 />
 
                 <span
@@ -30,10 +30,11 @@ function QuestionPanel({
                     <span>{currentQuestion}/10</span>
                 </span>
 
-                <DeleteOneButton
+                <HintButton
                     loaderIcon={loaderIcon}
-                    deleteOne={deleteOne}
+                    deleteMethod={deleteOne}
                     isAvailable={isAvailableDeleteOne}
+                    btnText="Delete One"
                 />
             </div>
             <div

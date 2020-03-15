@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./styles/App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Quiz from "./components/pages/quiz page/QuizPanel";
-import Statistics from "./components/pages/statistic page/Statistics";
-import MainPanel from "./components/pages/main page/MainPanel";
+import Quiz from "./pages/quiz page/QuizPanel";
+import Statistics from "./pages/statistic page/Statistics";
+import MainPanel from "./pages/main page/MainPanel";
 
 class App extends Component {
     render() {

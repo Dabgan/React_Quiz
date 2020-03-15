@@ -1,20 +1,19 @@
 import React from "react";
 
-function DeleteOneButton({ deleteOne, isAvailable, loaderIcon }) {
+function HintButton({ deleteMethod, isAvailable, loaderIcon, btnText }) {
     const buttonStyle = isAvailable ? "" : "btn-disabled";
-    const isIconVisible = loaderIcon ? "none" : "inline-block ";
-
+    const isIconVisible = loaderIcon ? "none" : "inline-block";
     return (
         <div className="prompt">
             <button
                 style={{ display: `${isIconVisible}` }}
                 className={"btn btn-prompt " + buttonStyle}
-                onClick={() => deleteOne(isAvailable)}
+                onClick={() => deleteMethod(isAvailable)}
             >
-                Delete one
+                {btnText}
             </button>
         </div>
     );
 }
 
-export default DeleteOneButton;
+export default HintButton;

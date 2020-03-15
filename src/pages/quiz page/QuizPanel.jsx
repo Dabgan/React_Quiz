@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import QuestionPanel from "./QuestionPanel";
-import AnswerPanel from "./AnswerPanel";
-import NextQuestionButton from "../../NextQuestionButton";
-import LoaderIcon from "../../LoaderIcon";
-import FinishQuizButton from "../../FinishQuizButton";
+import AnswerPanel from "./answers panel/AnswerPanel";
+import NextQuestionButton from "../../components/NextQuestionButton";
+import LoaderIcon from "../../components/LoaderIcon";
+import FinishQuizButton from "../../components/FinishQuizButton";
 
 class QuizPanel extends Component {
     state = {

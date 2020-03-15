@@ -12,7 +12,7 @@ const FinishQuizButton = ({
     };
 
     return (
-        <React.Fragment>
+        <>
             {isSubmitted ? (
                 <Link
                     to={{
@@ -40,7 +40,7 @@ const FinishQuizButton = ({
                     Finish Quiz
                 </button>
             )}
-        </React.Fragment>
+        </>
     );
 };
 
