@@ -18,29 +18,29 @@ class QuizPanel extends Component {
         fiftyFiftyHint: true,
         currentQuestion: 1,
         points: 0,
-        loaderIcon: true
+        loaderIcon: true,
     };
 
     componentDidMount = () => {
         const { apiURL } = this.state;
 
         fetch(apiURL)
-            .then(res => {
+            .then((res) => {
                 return res.json();
             })
-            .then(res => {
-                const formattedQuestion = res.results.map(loadedQuestion => ({
-                    quest: this.htmlDecode(loadedQuestion.question)
+            .then((res) => {
+                const formattedQuestion = res.results.map((loadedQuestion) => ({
+                    quest: this.htmlDecode(loadedQuestion.question),
                 }));
 
-                const formattedAnswers = res.results.map(answer => {
+                const formattedAnswers = res.results.map((answer) => {
                     const answerChoices = [...answer.incorrect_answers];
                     answerChoices.splice(
                         Math.floor(Math.random() * 4),
                         0,
                         answer.correct_answer
                     );
-                    const isAnswerCorrect = index => {
+                    const isAnswerCorrect = (index) => {
                         return answerChoices[index] === answer.correct_answer;
                     };
                     const answers = answerChoices.map((answer, index) => ({
@@ -48,34 +48,34 @@ class QuizPanel extends Component {
                         text: this.htmlDecode(answerChoices[index]),
                         isCorrect: isAnswerCorrect(index),
                         isMarked: false,
-                        submitedAnswerClass: "answer-hover"
+                        submitedAnswerClass: "answer-hover",
                     }));
                     return answers;
                 });
 
                 this.setState({
                     questions: [...formattedQuestion],
-                    answers: [...formattedAnswers]
+                    answers: [...formattedAnswers],
                 });
                 this.setState({
                     actualQuestion: this.state.questions[0],
                     actualAnswers: this.state.answers[0],
-                    loaderIcon: false
+                    loaderIcon: false,
                 });
             });
     };
 
-    htmlDecode = input => {
+    htmlDecode = (input) => {
         const doc = new DOMParser().parseFromString(input, "text/html");
         return doc.documentElement.textContent;
     };
 
-    selectAnswer = event => {
+    selectAnswer = (event) => {
         const { actualAnswers } = this.state;
         const clickedAnswer = parseInt(event.target.id);
 
         this.setState(
-            actualAnswers.map(answer => {
+            actualAnswers.map((answer) => {
                 if (clickedAnswer === answer.id) {
                     return (answer.isMarked = true);
                 } else return answer;
@@ -91,7 +91,7 @@ class QuizPanel extends Component {
             return;
         }
         this.setState(
-            actualAnswers.map(answer => {
+            actualAnswers.map((answer) => {
                 const { isMarked, isCorrect } = answer;
                 if (isMarked && !isCorrect) {
                     return (answer.submitedAnswerClass = " wrong");
@@ -112,7 +112,7 @@ class QuizPanel extends Component {
 
     showWarningSelectAnswer = () => {
         this.setState({
-            isAnswerChosen: true
+            isAnswerChosen: true,
         });
     };
 
@@ -121,7 +121,7 @@ class QuizPanel extends Component {
             submitAnswer,
             currentQuestion,
             questions,
-            answers
+            answers,
         } = this.state;
 
         if (!submitAnswer) {
@@ -133,24 +133,24 @@ class QuizPanel extends Component {
             this.setState({
                 actualQuestion: questions[number],
                 actualAnswers: answers[number],
-                currentQuestion: currentQuestion + 1
+                currentQuestion: currentQuestion + 1,
             });
             this.setState({ submitAnswer: false });
         }
     };
 
-    getRandomNumber = x => {
+    getRandomNumber = (x) => {
         const random = Math.floor(Math.random() * x);
         return random;
     };
 
-    deleteAnswer = hint => {
+    deleteAnswer = (hint) => {
         const { actualAnswers } = this.state;
 
         if (hint) {
             const arrayFiltered = actualAnswers
-                .filter(answer => answer.isCorrect === false)
-                .filter(answer => answer.submitedAnswerClass !== "wrong");
+                .filter((answer) => answer.isCorrect === false)
+                .filter((answer) => answer.submitedAnswerClass !== "wrong");
             const randomNumber = this.getRandomNumber(arrayFiltered.length);
             const finalArray = arrayFiltered.map((answer, index) => {
                 if (index === randomNumber) {
@@ -164,18 +164,18 @@ class QuizPanel extends Component {
         }
     };
 
-    deleteOneAnswer = hint => {
+    deleteOneAnswer = (hint) => {
         this.deleteAnswer(hint);
         this.setState({
-            deleteOneHint: false
+            deleteOneHint: false,
         });
     };
 
-    deleteTwoAnswers = hint => {
+    deleteTwoAnswers = (hint) => {
         this.deleteAnswer(hint);
         this.deleteAnswer(hint);
         this.setState({
-            fiftyFiftyHint: false
+            fiftyFiftyHint: false,
         });
     };
 
@@ -190,14 +190,14 @@ class QuizPanel extends Component {
             actualAnswers,
             fiftyFiftyHint,
             deleteOneHint,
-            questions
+            questions,
         } = this.state;
 
         const {
             selectAnswer,
             deleteOneAnswer,
             deleteTwoAnswers,
-            getNextQuestion
+            getNextQuestion,
         } = this;
 
         return (

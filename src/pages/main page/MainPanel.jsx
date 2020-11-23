@@ -5,19 +5,19 @@ export class MainPanel extends Component {
     state = {
         apiURL:
             "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple",
-        category: "General Knowledge"
+        category: "General Knowledge",
     };
 
-    changeCategory = event => {
+    changeCategory = (event) => {
         const optionText =
             event.target.options[event.target.selectedIndex].text;
         this.setState({
             apiURL: event.target.value,
-            category: optionText
+            category: optionText,
         });
     };
 
-    getCategoryURL = number => {
+    getCategoryURL = (number) => {
         return `https://opentdb.com/api.php?amount=10&category=${number}&difficulty=easy&type=multiple`;
     };
 
@@ -33,8 +33,8 @@ export class MainPanel extends Component {
                             pathname: "/quiz",
                             state: {
                                 apiURL: apiURL,
-                                category: category
-                            }
+                                category: category,
+                            },
                         }}
                         className="btn btn-start"
                     >
