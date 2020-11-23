@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import QuestionPanel from "./QuestionPanel";
-import AnswerPanel from "./answers panel/AnswerPanel";
+import QuestionPanel from "../../components/Question/QuestionPanel";
+import AnswerPanel from "../../components/Answers/AnswerPanel";
 import NextQuestionButton from "../../components/NextQuestionButton";
 import LoaderIcon from "../../components/LoaderIcon";
 import FinishQuizButton from "../../components/FinishQuizButton";

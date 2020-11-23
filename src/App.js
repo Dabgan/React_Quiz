@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import "./styles/App.css";
+import "./styles/main.scss";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Quiz from "./pages/quiz page/QuizPanel";
-import Statistics from "./pages/statistic page/Statistics";
-import MainPanel from "./pages/main page/MainPanel";
+import Quiz from "./pages/quiz/QuizPanel";
+import Statistics from "./pages/statistics/Statistics";
+import MainPanel from "./pages/main/MainPanel";
 
 class App extends Component {
     render() {

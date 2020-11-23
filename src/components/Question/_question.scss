@@ -1,0 +1,78 @@
+.question-panel {
+    display: flex;
+    flex-flow: column;
+    align-self: stretch;
+    flex: 0 1 60%;
+}
+.quiz-information {
+    display: flex;
+    align-items: center;
+    margin: 5px 0 15px;
+    font-size: 1.2rem;
+    .prompt {
+        flex: 1;
+    }
+    @include breakpoint(md) {
+        justify-content: space-between;
+        .prompt {
+            flex: 0;
+        }
+    }
+}
+.btn-prompt {
+    margin-top: 0;
+    padding: 6px;
+}
+
+.question-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    padding: 10px;
+    font-size: 1.2rem;
+    background: radial-gradient(rgb(89, 46, 176), rgb(43, 10, 109));
+    box-shadow: -1px -1px 5px 3px $main-color-light,
+        1px 1px 5px 3px $main-color-light;
+    user-select: none;
+    transform: rotate(45deg);
+    span {
+        display: block;
+        transform: rotate(-45deg);
+    }
+}
+.question-container {
+    flex: 1;
+    display: flex;
+}
+
+.question-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 15px);
+    flex: 1 1 auto;
+    margin: 15px auto auto;
+    padding: 0 15px;
+    background: radial-gradient(rgb(89, 46, 176), rgb(43, 10, 109));
+    border: 2px solid $main-color-dark;
+    font-size: 2rem;
+}
+.warning {
+    margin-top: 5px;
+    font-size: 1.3rem;
+    color: #ff3535;
+    text-shadow: 2px 2px 2px $container-color-dark;
+    visibility: hidden;
+    @include breakpoint(md) {
+        margin-top: 10px 0;
+    }
+}
+.error {
+    animation: shake 0.92s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    visibility: visible;
+}

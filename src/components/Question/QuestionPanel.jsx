@@ -1,5 +1,5 @@
 import React from "react";
-import HintButton from "../../components/HintButton";
+import HintButton from "../HintButton";
 
 function QuestionPanel({
     question,
@@ -9,7 +9,7 @@ function QuestionPanel({
     isAvailableDeleteOne,
     fiftyFifty,
     deleteOne,
-    loaderIcon
+    loaderIcon,
 }) {
     const isIconVisible = loaderIcon ? "none" : "flex";
     const isAnswerSubmitted = isAnswerChosen ? "warning error" : "warning";

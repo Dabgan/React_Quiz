@@ -1,0 +1,17 @@
+.quiz-panel {
+    position: relative;
+    @include breakpoint(md) {
+        margin: 20px 0;
+        height: 600px;
+        align-self: stretch;
+    }
+}
+.loader-icon {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 10px solid $main-color;
+    border-top: 10px solid $main-color-dark;
+    animation: loading 2s linear infinite;
+}
