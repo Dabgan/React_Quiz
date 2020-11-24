@@ -7,11 +7,11 @@ class AnswerPanel extends Component {
             answers,
             isSubmitted,
             selectAnswer,
-            isAnswerChosen
+            isAnswerChosen,
         } = this.props;
         const onSelect = isSubmitted ? null : selectAnswer;
 
-        const answersList = answers.map(answer => (
+        const answersList = answers.map((answer) => (
             <Answer
                 key={answer.id}
                 id={answer.id}

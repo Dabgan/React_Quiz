@@ -1,0 +1,63 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 16px;
+    @include breakpoint(md) {
+        font-size: 14px;
+    }
+}
+
+body {
+    font-family: $main-font;
+    line-height: 1.4;
+    background-color: #e5e5e5;
+    font-size: 18px;
+    color: $font-color;
+}
+a {
+    color: #333333;
+    text-decoration: none;
+}
+.btn {
+    margin-top: 30px;
+    padding: 15px;
+    color: $font-color;
+    font-size: 1.1rem;
+    font-family: $secondary-font;
+    background-color: $answer-color;
+    border: 2px solid $main-color-light;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out,
+        color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    &:hover {
+        color: #ffffff;
+        transform: translateY(-3px);
+        background-color: $container-color;
+        box-shadow: -1px -1px 4px $main-color-light,
+            1px 1px 4px $main-color-light;
+    }
+}
+.btn-disabled {
+    color: $font-color-disabled;
+    background-color: $container-color-dark;
+    border: 2px solid $font-color;
+    cursor: initial;
+    box-shadow: none;
+    pointer-events: none;
+}
+.big {
+    font-size: 5rem;
+    @include breakpoint(s) {
+        font-size: 3rem;
+    }
+}

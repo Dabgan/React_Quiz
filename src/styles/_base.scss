@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700|Varela+Round&display=swap");
+
+$font-color: #cecece;
+$font-color-disabled: #9d9d9d;
+$background-color: #38108d;
+$container-color: #4b14b8;
+$container-color-dark: #1f094d;
+$answer-color: #300d77;
+$main-color: #28066b;
+$main-color-light: #eade09;
+$main-color-dark: #fccaab;
+$main-font: "Lato", sans-serif;
+$secondary-font: "Varela Round", sans-serif;
+$correct-color: #23d70b;
+$wrong-color: #f9180d;
+
+@mixin breakpoint($point) {
+    @if $point == xs {
+        @media (max-width: 320px) {
+            @content;
+        }
+    } @else if $point == "s" {
+        @media (max-width: 375px) {
+            @content;
+        }
+    } @else if $point == "md" {
+        @media (max-width: 767px) {
+            @content;
+        }
+    } @else if $point == "lg" {
+        @media (max-width: 1024px) {
+            @content;
+        }
+    } @else if $point == "xl" {
+        @media (max-width: 1440px) {
+            @content;
+        }
+    }
+}

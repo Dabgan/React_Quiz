@@ -6,7 +6,7 @@ class Answer extends Component {
             selectAnswer,
             answerText,
             id,
-            answerSubmitedClass
+            answerSubmitedClass,
         } = this.props;
 
         return (

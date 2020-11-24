@@ -1,0 +1,14 @@
+.statistics-panel {
+    h1 {
+        font-size: 3rem;
+    }
+    @include breakpoint(md) {
+        h1 {
+            font-size: 2rem;
+        }
+        p {
+            margin-top: 1.5rem;
+            font-size: 1.5rem;
+        }
+    }
+}
