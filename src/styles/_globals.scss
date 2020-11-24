@@ -57,7 +57,7 @@ a {
 }
 .big {
     font-size: 5rem;
-    @include breakpoint(xs) {
+    @include breakpoint(s) {
         font-size: 3rem;
     }
 }

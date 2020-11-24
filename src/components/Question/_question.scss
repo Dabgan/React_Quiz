@@ -2,7 +2,10 @@
     display: flex;
     flex-flow: column;
     align-self: stretch;
-    flex: 0 1 60%;
+    flex: 3 1 60%;
+    @include breakpoint(md) {
+        flex: 0 0 auto;
+    }
 }
 .quiz-information {
     display: flex;
@@ -13,6 +16,7 @@
         flex: 1;
     }
     @include breakpoint(md) {
+        margin-bottom: 35px;
         justify-content: space-between;
         .prompt {
             flex: 0;
@@ -43,21 +47,26 @@
     }
 }
 .question-container {
-    flex: 1;
     display: flex;
+    flex: 1 1 auto;
 }
 
 .question-heading {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100% - 15px);
     flex: 1 1 auto;
-    margin: 15px auto auto;
+    margin-top: 20px;
     padding: 0 15px;
     background: radial-gradient(rgb(89, 46, 176), rgb(43, 10, 109));
     border: 2px solid $main-color-dark;
     font-size: 2rem;
+    @include breakpoint(s) {
+        font-size: 1.2rem;
+        height: auto;
+        margin: 0 0;
+        padding: 10px;
+    }
 }
 .warning {
     margin-top: 5px;

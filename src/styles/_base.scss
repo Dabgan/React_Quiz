@@ -14,7 +14,6 @@ $secondary-font: "Varela Round", sans-serif;
 $correct-color: #23d70b;
 $wrong-color: #f9180d;
 
-// media query
 @mixin breakpoint($point) {
     @if $point == xs {
         @media (max-width: 320px) {
@@ -25,7 +24,7 @@ $wrong-color: #f9180d;
             @content;
         }
     } @else if $point == "md" {
-        @media (max-width: 768px) {
+        @media (max-width: 767px) {
             @content;
         }
     } @else if $point == "lg" {

@@ -1,9 +1,7 @@
 .quiz-panel {
     position: relative;
     @include breakpoint(md) {
-        margin: 20px 0;
-        height: 600px;
-        align-self: stretch;
+        margin: 0 0;
     }
 }
 .loader-icon {
